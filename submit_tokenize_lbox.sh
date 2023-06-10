@@ -1,0 +1,1 @@
+spark-submit --master local tokenize_lbox.py --py-files encode.py
