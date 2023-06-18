@@ -11,8 +11,8 @@ from encode import Tokenizer
 
 SCHEMA = StructType(
     [
-        StructField(name="casetype", dataType=StringType(), nullable=False),
-        StructField(name="facts", dataType=StringType(), nullable=False),
+        StructField(name="casetype", dataType=StringType()),
+        StructField(name="facts", dataType=StringType()),
     ]
 )
 
@@ -52,6 +52,15 @@ def main():
         min("length").alias("min_token_length"),
     )
     result.show()
+    """
+    Output must be:
+    +--------+------------------+----------------+----------------+
+    |casetype| mean_token_length|max_token_length|min_token_length|
+    +--------+------------------+----------------+----------------+
+    |   civil|     463.309765625|            4915|              31|
+    |criminal|347.19485294117646|            8073|              11|
+    +--------+------------------+----------------+----------------+
+    """
 
     spark.stop()
 
